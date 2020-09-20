@@ -202,3 +202,5 @@ function onResizeSliderDrag(value) {
   document.getElementById("myCanvas").height  = size;
   RLottieModule.update();
 }
+
+// test
