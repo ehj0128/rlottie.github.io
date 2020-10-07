@@ -34,7 +34,7 @@
     </div>
     <div class="mt-4">
       <v-row 
-        class="pb-3 px-3 mt-4"
+        class="pb-3 px-5 mt-4"
         align="center">
         <v-col cols="12" class="py-0 mt-8">
           <div class="text-left" style="color:white;">Background Color</div>
@@ -57,6 +57,7 @@
           flat
           hide-mode-switch
           dark
+          width="280"
           style="background-color:transparent;"
         ></v-color-picker>
       </v-row>
@@ -150,7 +151,7 @@ module.exports = {
             var dataStr = URL.createObjectURL(blob) //"data:image/gif;charset=utf-8," + encodeURIComponent(JSON.stringify(obj.lottieObject));
             var downloadAnchorNode = document.createElement('a');
             downloadAnchorNode.setAttribute("href",     dataStr);
-            downloadAnchorNode.setAttribute("download", "temp" + ".gif");
+            downloadAnchorNode.setAttribute("download", Math.random().toString(36).substr(2,8).toUpperCase() + ".gif");
             document.body.appendChild(downloadAnchorNode); 
             downloadAnchorNode.click();
             downloadAnchorNode.remove();
