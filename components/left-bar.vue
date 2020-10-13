@@ -21,6 +21,28 @@
         </span>
       </v-tooltip>
     </div>
+
+    <div class="uploadBTN" style="align-center">
+      <v-tooltip right class="tooltip-btn">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            tile
+            class="py-7"
+            text
+            color="white"
+            v-bind="attrs"
+            v-on="on"
+            @click="uploadUrl"
+          >
+          <v-icon style="pointer:cursor">fas fa-cloud-upload-alt</v-icon>
+          </v-btn>
+        </template> 
+        <span>
+          upload New JSON File (Ctrl + O)
+        </span>
+      </v-tooltip>
+    </div>
+
     <div class="d-flex align-center" style="height: 93%;">
       <div class="text-center" style="width: 100%;">
 
@@ -150,6 +172,27 @@ module.exports = {
     },
     clickToUploadJson(){
       this.$refs.json.click();
+    },
+    uploadUrl(){
+      var inputUrl = prompt("input rLottie File's Url", "hello")
+      var url = inputUrl.trim();
+      $.ajax({ 
+        crossOrigin: true,
+        url: url, 
+        success: function(data) 
+          { 
+            let domparser = new DOMParser()
+            let doc = domparser.parseFromString(data, "text/html");
+            var JsonUrl = doc.querySelector('download-button').getAttribute('file');
+            $.ajax({
+              crossOrigin: true,
+              url: JsonUrl,
+              success: function(data){
+                RLottieModule.reload(data);
+              }
+            })
+          }
+      });
     }
   },
   computed:{
