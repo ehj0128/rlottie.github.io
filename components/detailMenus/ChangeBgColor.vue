@@ -33,6 +33,7 @@
         <v-color-picker
           flat
           dark
+          width="285"
           style="background-color: transparent"
           v-model="color"
         >
@@ -53,7 +54,7 @@
         tile
         class="py-7"
         text color="white"
-        style="width:90%; height: 100px; border: 2px dashed; border-radius: 20px; background-color:rgba(100,100,100,0.2);"
+        style="width:90%; height: 200px; border: 2px dashed; border-radius: 20px; background-color:rgba(100,100,100,0.2);"
         @click="clickToBackgroundImage">
           <v-icon style="pointer: cursor; font-size:30px;">mdi-image-plus</v-icon>
       </v-btn>
@@ -96,8 +97,10 @@ module.exports = {
     backgroundReset() {
       if (this.backgroundImg) {
         var parentDiv = document.querySelector("#img-background");
-        var childImg = document.querySelector("#background");
-        parentDiv.removeChild(childImg);
+        if(parentDiv.childNodes.length!=0){
+          var childImg = document.querySelector("#background");
+          parentDiv.removeChild(childImg);
+        }
       }
       this.backgroundImg = false;
     },
@@ -108,8 +111,10 @@ module.exports = {
       }
       if (this.backgroundImg) {
         var parentDiv = document.querySelector("#img-background");
-        var childImg = document.querySelector("#background");
-        parentDiv.removeChild(childImg);
+        if(parentDiv.childNodes.length!=0){
+          var childImg = document.querySelector("#background");
+          parentDiv.removeChild(childImg);
+        }
       }
       
       var img = document.createElement("img");
