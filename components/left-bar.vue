@@ -171,6 +171,33 @@ module.exports = {
         return false;
       }
     },
+<<<<<<< HEAD
+=======
+    clickToUploadJson(){
+      this.$refs.json.click();
+    },
+    uploadUrl(){
+      var inputUrl = prompt("input rLottie File's Url", "hello")
+      var url = inputUrl.trim();
+      $.ajax({ 
+        crossOrigin: true,
+        url: url, 
+        success: function(data) 
+          { 
+            let domparser = new DOMParser()
+            let doc = domparser.parseFromString(data, "text/html");
+            var JsonUrl = doc.querySelector('download-button').getAttribute('file');
+            $.ajax({
+              crossOrigin: true,
+              url: JsonUrl,
+              success: function(data){
+                RLottieModule.reload(data);
+              }
+            })
+          }
+      });
+    }
+>>>>>>> 30d97e9ed6342bb456a04c666772bec66c3449bd
   },
   computed: {
     activateColor() {
